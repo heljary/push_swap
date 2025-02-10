@@ -31,3 +31,9 @@ int  is_dupliacte(push_swap *root ,int value)
     }
     return 0;
 }
+
+void function_exit()
+{
+	ft_putstr("Error\n");
+    exit(1);
+}

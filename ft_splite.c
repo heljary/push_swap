@@ -30,7 +30,7 @@ static int	ft_count_words(const char *s, char c)
 	return (words);
 }
 
-static void	ft_free_split(char **tab)
+void	ft_free_split(char **tab)
 {
 	int	i;
 

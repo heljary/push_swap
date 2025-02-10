@@ -1,68 +1,45 @@
 #include "push_swap.h"
 
-void inserttoend(push_swap **Node,int value)
+void    sa(push_swap  **stack_a)
 {
-    push_swap *newnode = malloc(sizeof(push_swap));
-    if(!newnode)
+    push_swap *head;
+    push_swap *ptr1;
+
+    if (stacka_size(*stack_a) < 2)
+    {
+        ft_putstr("non sa");
+        return;
+    }
+    head = *stack_a;
+    ptr1 = head -> next;
+
+    head -> next = ptr1 -> next;
+    ptr1 -> next = head;
+    *stack_a = ptr1;
+    ft_putstr("sa\n");
+}
+
+void    sb(push_swap  **stack_b)
+{
+    push_swap *head;
+    push_swap *ptr1;
+
+    if (stacka_size(*stack_b) < 2)
     {
         return;
     }
-    newnode -> next = NULL;
-    newnode -> number = value;
-    if(*Node == NULL)
-    {
-        *Node = newnode;
-        return;
-    }
-    push_swap *current = *Node;
-    while (current -> next)
-    {
-        current = current -> next;
-    }
-    current -> next = newnode;
+    head = *stack_b;
+    ptr1 = head -> next;
+
+    head -> next = ptr1 -> next;
+    ptr1 -> next = head;
+    *stack_b = ptr1;
+    ft_putstr("sb\n");
 }
 
-
-void ft_swap(push_swap *StackA)
+void    ss(push_swap  **stack_a,push_swap  **stack_b)
 {
-
-
-    while (StackA != NULL)
-    {
-        ft_putnbr(StackA -> number);
-        ft_putchar('\n');
-        StackA = StackA -> next;
-    }
-}
-
-int main(int ac, char **av)
-{
-    push_swap *StackA = NULL;
-    int i = 1;
-    if(ac >= 2)
-        while (av[i])
-        {  
-            if(!is_validnumber(av[i]))
-                function_exit();
-
-            else if(is_dupliacte(StackA,ft_atoi(av[i])))
-                function_exit();
-
-            else if(ft_atoi(av[i]) > 2147483647 || ft_atoi(av[i]) < -2147483648)
-                function_exit();
-
-            inserttoend(&StackA,ft_atoi(av[i]));
-            i++;
-        }
-
-    ft_swap(StackA);
-    push_swap *temp;
-    while (StackA != NULL)
-    {
-        temp = StackA;
-        StackA = StackA -> next;
-        free(temp);
-    }
-    
-    return 0;
+    sa(stack_a);
+    sb(stack_b);
+    ft_putstr("ss\n");
 }

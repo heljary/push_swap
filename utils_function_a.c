@@ -4,17 +4,21 @@ void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-
+int	ft_strlen(const char *str)
+{
+	int i = 0;
+	while(str[i])
+	{
+		i++;
+	}
+	return i;
+}
 void	ft_putstr(char *str)
 {
     int	len;
-	len = 0;
+	len = ft_strlen(str);
     if (!str)
 		return ;
-	while (str[len] != '\0')
-	{
-		len++;
-	}
 	write(1, str, len);
 }
 
@@ -69,8 +73,40 @@ long	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-void function_exit()
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	ft_putstr("error\n");
-    exit(1);
+	char	*substr;
+	size_t	i;
+	size_t	s_len;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		len = 0;
+	if (len > s_len - start)
+		len = s_len - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
+}
+
+int stacka_size(push_swap *head)
+{
+    int count = 0;
+    while(head != NULL)
+    {
+        count ++;
+        head = head -> next;
+    }
+
+    return count;
 }
