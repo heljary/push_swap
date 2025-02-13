@@ -59,7 +59,7 @@ void algo_push_a_in_b(push_swap **stack_a,push_swap **stack_b)
         if((*stack_a) -> number <= T[start])
         {
             pb(stack_a,stack_b);
-            rb(stack_b);
+            rb(stack_b,"rb\n");
             // printf("\nstart in if 1 ===>%d\n",start);
             start++;
             // printf("\nend in if   1 ===>%d\n",end);
@@ -68,9 +68,9 @@ void algo_push_a_in_b(push_swap **stack_a,push_swap **stack_b)
         else if((*stack_a)->number <= T[end])
         {
             pb(stack_a, stack_b);
-            if((*stack_a) ->number < (*stack_a) -> next ->number )
+            if(stacka_size(*stack_b) > 1&& (*stack_b) ->number < (*stack_b) -> next ->number )
             {
-                sb(stack_b);
+                sb(stack_b,"sb\n");
             }
                 // printf("\nstart in if 2 ===>%d\n",start);
                 start++;
@@ -78,7 +78,7 @@ void algo_push_a_in_b(push_swap **stack_a,push_swap **stack_b)
                 end++;
         }
         else
-            ra(stack_a);
+            ra(stack_a,"ra\n");
     }
     free(T);
 }
@@ -88,6 +88,10 @@ void algorithm_sort(push_swap **stack_a,push_swap **stack_b)
 {
     push_swap   *head;
     int     max;
+    int pos;
+    int i;
+
+    i = 0;
     algo_push_a_in_b(stack_a,stack_b);
     while (*stack_b != NULL)
     {
@@ -95,24 +99,25 @@ void algorithm_sort(push_swap **stack_a,push_swap **stack_b)
         max = head -> number;
         while (head != NULL)
         {
-            if (max < head -> number)
+            if (head -> number > max)
             {
                 max = head -> number;
+                pos = i;
             }
             head = head -> next;
+            i++;
         }
 
-        while (*stack_b != NULL)
+        if(pos <= i/2)
         {
-            if((*stack_b) -> number == max)
-            {
-                pa(stack_a,stack_b);
-                break;
-            }
-            if((*stack_b) -> number != max)
-            {
-                rb(stack_b);
-            }
-        }
+            while ((*stack_b) -> number != max)
+                rb(stack_b,"rb\n");
+            
+        }else 
+            while (stacka_size(*stack_b) && (*stack_b) -> number != max)
+                rrb(stack_b,"rrb\n");
+
+        pa(stack_a,stack_b);
+        
     }
 }

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    rra(push_swap  **stack_a)
+void    rra(push_swap  **stack_a,char *s)
 {
     push_swap *nxt;
     push_swap *last;
@@ -19,10 +19,10 @@ void    rra(push_swap  **stack_a)
     nxt -> next = NULL;
     last -> next = (*stack_a);
     (*stack_a) = last;
-    ft_putstr("rra\n");
+    ft_putstr(s);
 }
 
-void    rrb(push_swap  **stack_b)
+void    rrb(push_swap  **stack_b,char *s)
 {
     push_swap *nxt;
     push_swap *last;
@@ -41,12 +41,12 @@ void    rrb(push_swap  **stack_b)
     nxt -> next = NULL;
     last -> next = (*stack_b);
     (*stack_b) = last;
-    ft_putstr("rrb\n");
+    ft_putstr(s);
 }
 
 void    rrr(push_swap  **stack_a,push_swap  **stack_b)
 {
-    rra(stack_a);
-    rrb(stack_b);
+    rra(stack_a,NULL);
+    rrb(stack_b,NULL);
     ft_putstr("rrr\n");
 }

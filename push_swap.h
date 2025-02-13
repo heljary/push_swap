@@ -16,8 +16,8 @@ typedef struct pushswap
 // opration function
 
 //swap
-void    sa(push_swap  **stack_a);
-void    sb(push_swap  **stack_b);
+void    sa(push_swap  **stack_a,char *s);
+void    sb(push_swap  **stack_b,char *s);
 void    ss(push_swap  **stack_a,push_swap  **stack_b);
 
 //push
@@ -26,14 +26,14 @@ void    pb(push_swap **stack_a, push_swap **stack_b);
 
 //rotate
 
-void    ra(push_swap  **stack_a);
-void    rb(push_swap  **stack_b);
+void    ra(push_swap  **stack_a,char *s);
+void    rb(push_swap  **stack_b,char *s);
 void    rr(push_swap  **stack_a,push_swap  **stack_b);
 
 //reverse rotate
 
-void    rra(push_swap  **stack_a);
-void    rrb(push_swap  **stack_b);
+void    rra(push_swap  **stack_a,char *s);
+void    rrb(push_swap  **stack_b,char *s);
 void    rrr(push_swap  **stack_a,push_swap  **stack_b);
 
 
