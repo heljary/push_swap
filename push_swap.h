@@ -55,9 +55,11 @@ int     stacka_size(push_swap *head);
 void    insert_first(push_swap **head,int value);
 void    insert_last(push_swap **head,int value);
 void    free_stack(push_swap *stack);
-void ft_print(push_swap *StackA);
+void    ft_print(push_swap *StackA);
 //fun sorting algo
 
-void algo_sort(push_swap **stack_a);
+void    algo_push_a_in_b(push_swap **stack_a,push_swap **stack_b);
+void    algorithm_sort(push_swap **stack_a,push_swap **stack_b);
+
 //,push_swap **stack_b
 #endif

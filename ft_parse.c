@@ -26,20 +26,20 @@ int is_sorted(push_swap *head)
     {
         if(num > head -> number)
         {
-            printf("NON !\n");
+            printf("NUMBER IS NOT SORTED !\n");
             return 0;
         }
         num = head -> number;
         head = head -> next;
     }
-    printf("YES 3\n");
+    printf("NUMBER IS SORTED\n");
     return 1;
 }
 
 int main(int ac, char **av)
 {
     push_swap *StackA = NULL;
-    // push_swap *Stackb = NULL;
+    push_swap *Stackb = NULL;
     int i = 1;
     int j;
     int num;
@@ -74,16 +74,13 @@ int main(int ac, char **av)
     }
     if(is_sorted(StackA))
     {
-        // exit(1);
+        exit(1);
     }
-    ft_print(StackA);
-    ft_putstr("\n-----------------!!!!1!!!!-----------------\n");
-    algo_sort(&StackA);
-    // ft_putstr("\n-----------------!!!!2!!!!-----------------\n");
-    // ft_print(StackA);
-    // // ft_putstr("\n-----------------!!!!3!!!!-----------------\n");
-    // // sa(&StackA);
-    // // ft_print(StackA);
+    algorithm_sort(&StackA,&Stackb);
+    if(is_sorted(StackA))
+    {
+        exit(1);
+    }
     free_stack(StackA);
     return 0;
 }
