@@ -26,13 +26,11 @@ int is_sorted(push_swap *head)
     {
         if(num > head -> number)
         {
-            printf("NUMBER IS NOT SORTED !\n");
             return 0;
         }
         num = head -> number;
         head = head -> next;
     }
-    printf("NUMBER IS SORTED\n");
     return 1;
 }
 
@@ -51,20 +49,15 @@ int main(int ac, char **av)
         {
             args = ft_split(av[i], ' ');
             j = 0;
-
             while (args[j])
             {
                 num = ft_atoi(args[j]);
-
                 if (!is_validnumber(args[j]))
                     function_exit();
-
                 else if (is_dupliacte(StackA, num))
                     function_exit();
-
                 else if (num > INT_MAX || num < INT_MIN)
                     function_exit();
-
                 insert_last(&StackA, num);
                 j++;
             }
@@ -73,14 +66,10 @@ int main(int ac, char **av)
         ft_free_split(args);
     }
     if(is_sorted(StackA))
-    {
         exit(1);
-    }
+    ft_print(StackA);
     algorithm_sort(&StackA,&Stackb);
-    if(is_sorted(StackA))
-    {
-        exit(1);
-    }
+    ft_print(StackA);
     free_stack(StackA);
     return 0;
 }

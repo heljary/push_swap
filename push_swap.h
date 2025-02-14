@@ -58,8 +58,6 @@ void    free_stack(push_swap *stack);
 void    ft_print(push_swap *StackA);
 //fun sorting algo
 
-void    algo_push_a_in_b(push_swap **stack_a,push_swap **stack_b);
 void    algorithm_sort(push_swap **stack_a,push_swap **stack_b);
 
-//,push_swap **stack_b
 #endif
