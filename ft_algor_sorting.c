@@ -36,14 +36,51 @@ int *sort_array(push_swap **stack_a)
     return T;
 }
 
-void algo_sort_small_numbers(push_swap **stack_a)
+void algo_sort_fournumbers(push_swap **stack_a,push_swap **stack_b)
+{
+    push_swap *head;
+    push_swap *tmp;
+    int min;
+    if (!stack_a || !(*stack_a))
+        return;
+
+    head = (*stack_a);
+    min = head -> number;
+    while(head != NULL)
+    {
+        if(head -> number < min)
+        {
+            min =  head -> number;
+        }
+        head = head -> next;
+    }
+    tmp = (*stack_a);
+    while (tmp != NULL)
+    {
+        if (tmp -> number == min)
+        {
+            pb(stack_a, stack_b);
+        }
+        tmp = tmp -> next;
+    }
+    int size = stacka_size(*stack_a);
+    printf("size ====== %d",size);
+}
+
+void algo_sort_small_numbers(push_swap **stack_a,push_swap **stack_b)
 {
     int size;
+
     size = stacka_size(*stack_a);
+    if (!stack_a || !(*stack_a))
+        return;
     if(size == 2)
     {
         sa(stack_a,"sa\n");
         return;
+    }else if(size == 4)
+    {
+        algo_sort_fournumbers(stack_a,stack_b);
     }
     else if(size == 3)
     {
@@ -62,25 +99,6 @@ void algo_sort_small_numbers(push_swap **stack_a)
             ra(stack_a,"ra\n");
         }
     }
-}
-
-void algo_sort_small_numbers(push_swap **stack_a,push_swap **stack_b)
-{
-    push_swap *head;
-    int max;
-
-    head  =  *stack_a;
-    while (head != NULL)
-    {
-        head  =  *stack_a;
-        if(max > head -> next -> number)
-        {
-            max = head -> next -> number;
-        }
-
-        
-    }
-    
 
 }
 
@@ -100,35 +118,37 @@ void algo_push_a_in_b(push_swap **stack_a,push_swap **stack_b)
         return;
     if(size <= 5)
     {
-       algo_sort_small_numbers(stack_a);
+       algo_sort_small_numbers(stack_a,stack_b);
        return;
     }
-    if(size <= 100)
-        end = size/6; 
+    else if(size <= 100)
+        end = size/6;
     else if (size <= 500)
         end = size/12;
-        
-    while (*stack_a != NULL)
-    {
-        if ((*stack_a)->number <= T[start])
+    if(size > 5) 
+    {  
+        while (*stack_a != NULL)
         {
-            pb(stack_a,stack_b);
-            rb(stack_b,"rb\n");
-            start++;
-            end++;
-        }
-        else if((*stack_a)->number <= T[end])
-        {
-            pb(stack_a, stack_b);
-            if(stacka_size(*stack_b) > 1&& (*stack_b) ->number < (*stack_b) -> next ->number )
+            if ((*stack_a)->number <= T[start])
             {
-                sb(stack_b,"sb\n");
-            }
+                pb(stack_a,stack_b);
+                rb(stack_b,"rb\n");
                 start++;
                 end++;
+            }
+            else if((*stack_a)->number <= T[end])
+            {
+                pb(stack_a, stack_b);
+                if(stacka_size(*stack_b) > 1&& (*stack_b) ->number < (*stack_b) -> next ->number )
+                {
+                    sb(stack_b,"sb\n");
+                }
+                    start++;
+                    end++;
+            }
+            else
+                ra(stack_a,"ra\n");
         }
-        else
-            ra(stack_a,"ra\n");
     }
     free(T);
 }

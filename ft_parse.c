@@ -67,9 +67,13 @@ int main(int ac, char **av)
     }
     if(is_sorted(StackA))
         exit(1);
+    
     ft_print(StackA);
     algorithm_sort(&StackA,&Stackb);
+    // ft_print(StackA);
     ft_print(StackA);
+    ft_putstr("\n----------------------------\n");
+    ft_print(Stackb);
     free_stack(StackA);
     return 0;
 }
