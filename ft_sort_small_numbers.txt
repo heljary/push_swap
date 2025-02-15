@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_algor_sorting.c                                 :+:      :+:    :+:   */
+/*   ft_sort_small_numbers.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 16:21:22 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/15 17:52:55 by heljary          ###   ########.fr       */
+/*   Created: 2025/02/15 17:28:52 by heljary           #+#    #+#             */
+/*   Updated: 2025/02/15 17:52:36 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,91 +147,4 @@ void	algo_sort_fournumbers(t_push_swap **stack_a, t_push_swap **stack_b)
 	pb(stack_a, stack_b);
 	algo_sort_small_numbers(stack_a);
 	pa(stack_a, stack_b);
-}
-
-void	algo_push_a_in_b(t_push_swap **stack_a, t_push_swap **stack_b)
-{
-	int	size;
-	int	start;
-	int	end;
-	int	*T;
-
-	if (!stack_a || !(*stack_a))
-		return ;
-	T = sort_array(stack_a);
-	start = 0;
-	end = 0;
-	size = stack_size(*stack_a);
-	if (!T)
-		return ;
-	if (size <= 5)
-	{
-		end = size / size;
-	}
-	else if (size > 5 && size <= 100)
-		end = size / 6;
-	else if (size > 100 && size <= 500)
-		end = size / 12;
-	while (*stack_a != NULL)
-	{
-		if ((*stack_a)->number <= T[start])
-		{
-			pb(stack_a, stack_b);
-			rb(stack_b, "rb\n");
-			start++;
-			end++;
-		}
-		else if ((*stack_a)->number <= T[end])
-		{
-			pb(stack_a, stack_b);
-			if (stack_size(*stack_b) > 1
-				&& (*stack_b)->number < (*stack_b)->next->number)
-			{
-				sb(stack_b, "sb\n");
-			}
-			start++;
-			end++;
-		}
-		else
-			ra(stack_a, "ra\n");
-	}
-	free(T);
-}
-
-void	algorithm_sort(t_push_swap **stack_a, t_push_swap **stack_b)
-{
-	t_push_swap *head;
-	int max;
-	int pos;
-	int size;
-	int i;
-
-	algo_push_a_in_b(stack_a, stack_b);
-	while (*stack_b != NULL)
-	{
-		i = 0;
-		head = *stack_b;
-		size = stack_size(*stack_b);
-		pos = size;
-		max = head->number;
-		while (head != NULL)
-		{
-			if (head->number > max)
-			{
-				max = head->number;
-				pos -= i;
-			}
-			head = head->next;
-			i++;
-		}
-		if (pos >= size / 2)
-		{
-			while ((*stack_b)->number != max)
-				rb(stack_b, "rb\n");
-		}
-		else
-			while (stack_size(*stack_b) && (*stack_b)->number != max)
-				rrb(stack_b, "rrb\n");
-		pa(stack_a, stack_b);
-	}
 }

@@ -1,63 +1,80 @@
-#ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 16:34:22 by heljary           #+#    #+#             */
+/*   Updated: 2025/02/15 17:31:14 by heljary          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <limits.h>
-#include <stdbool.h>
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <limits.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct pushswap
 {
-    int number;
-    struct pushswap *next;
-} push_swap;
+	int				number;
+	struct pushswap	*next;
+}					t_push_swap;
 
 // opration function
 
-//swap
-void    sa(push_swap  **stack_a,char *s);
-void    sb(push_swap  **stack_b,char *s);
-void    ss(push_swap  **stack_a,push_swap  **stack_b);
+// swap
+void				sa(t_push_swap **stack_a, char *s);
+void				sb(t_push_swap **stack_b, char *s);
+void				ss(t_push_swap **stack_a, t_push_swap **stack_b);
 
-//push
-void    pa(push_swap **stack_a, push_swap **stack_b);
-void    pb(push_swap **stack_a, push_swap **stack_b);
+// push
+void				pa(t_push_swap **stack_a, t_push_swap **stack_b);
+void				pb(t_push_swap **stack_a, t_push_swap **stack_b);
 
-//rotate
+// rotate
 
-void    ra(push_swap  **stack_a,char *s);
-void    rb(push_swap  **stack_b,char *s);
-void    rr(push_swap  **stack_a,push_swap  **stack_b);
+void				ra(t_push_swap **stack_a, char *s);
+void				rb(t_push_swap **stack_b, char *s);
+void				rr(t_push_swap **stack_a, t_push_swap **stack_b);
 
-//reverse rotate
+// reverse rotate
 
-void    rra(push_swap  **stack_a,char *s);
-void    rrb(push_swap  **stack_b,char *s);
-void    rrr(push_swap  **stack_a,push_swap  **stack_b);
-
+void				rra(t_push_swap **stack_a, char *s);
+void				rrb(t_push_swap **stack_b, char *s);
+void				rrr(t_push_swap **stack_a, t_push_swap **stack_b);
 
 // free
-void	ft_free_split(char **tab);
+void				ft_free_split(char **tab);
 
-//utils fynction
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-long    ft_atoi(const char *str);
-void	ft_putnbr(int n);
-void    function_exit();
-char	**ft_split(char const *s, char c);
-char    *is_validnumber(char *str);
-int     is_dupliacte(push_swap *root ,int value);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-int     ft_strlen(const char *str);
-int     stacka_size(push_swap *head);
-void    insert_first(push_swap **head,int value);
-void    insert_last(push_swap **head,int value);
-void    free_stack(push_swap *stack);
-void    ft_print(push_swap *StackA);
-//fun sorting algo
-
-void    algorithm_sort(push_swap **stack_a,push_swap **stack_b);
+// utils fynction
+void				ft_putchar(char c);
+void				ft_putstr(char *str);
+long				ft_atoi(const char *str);
+void				ft_putnbr(int n);
+void				function_exit(void);
+char				**ft_split(char const *s, char c);
+char				*is_validnumber(char *str);
+int					is_dupliacte(t_push_swap *root, int value);
+char				*ft_substr(const char *s, unsigned int start, size_t len);
+int					ft_strlen(const char *str);
+int					stack_size(t_push_swap *head);
+void				insert_first(t_push_swap **head, int value);
+void				insert_last(t_push_swap **head, int value);
+void				free_stack(t_push_swap *stack);
+void				ft_print(t_push_swap *StackA);
+// fun sorting algo
+int					*sort_array(t_push_swap **stack_a);
+void				algorithm_sort(t_push_swap **stack_a,
+						t_push_swap **stack_b);
+void				algo_sort_small_numbers(t_push_swap **stack_a);
+void				algo_sort_fournumbers(t_push_swap **stack_a,
+						t_push_swap **stack_b);
+void				algo_sort_fivenumbers(t_push_swap **stack_a,
+						t_push_swap **stack_b);
 
 #endif
