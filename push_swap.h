@@ -54,7 +54,8 @@ void				ft_free_split(char **tab);
 // utils fynction
 void				ft_putchar(char c);
 void				ft_putstr(char *str);
-long				ft_atoi(const char *str, char **adress1, t_push_swap *adress2);
+long				ft_atoi(const char *str, char **adress1,
+						t_push_swap *adress2);
 void				ft_putnbr(int n);
 void				function_exit(char **adress, t_push_swap *stack);
 char				**ft_split(char const *s, char c);

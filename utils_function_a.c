@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:49:23 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/16 18:53:11 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:03:49 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_putnbr(int n)
 		ft_putchar(n + 48);
 }
 
-long	ft_atoi(const char *str, char **adress1,t_push_swap *adress2)
+long	ft_atoi(const char *str, char **adress1, t_push_swap *adress2)
 {
 	int		i;
 	int		sign;
