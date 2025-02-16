@@ -6,64 +6,20 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:28:52 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/15 17:52:36 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/15 19:03:43 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*sort_array(t_push_swap **stack_a)
-{
-	int			size;
-	int			*T;
-	int			i;
-	t_push_swap	*temp;
-	int			len;
-	int			j;
-	int			k;
-
-	size = stack_size(*stack_a);
-	T = malloc(size * sizeof(int));
-	if (!T)
-		return (NULL);
-	i = 0;
-	temp = *stack_a;
-	while (temp)
-	{
-		T[i++] = temp->number;
-		temp = temp->next;
-	}
-	len = i;
-	i = 0;
-	while (i < len - 1)
-	{
-		j = i + 1;
-		while (j < len)
-		{
-			if (T[i] > T[j])
-			{
-				k = T[j];
-				T[j] = T[i];
-				T[i] = k;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (T);
-}
-
 void	algo_sort_small_numbers(t_push_swap **stack_a)
 {
-	int	size;
-
-	size = stack_size(*stack_a);
-	if (size == 2)
+	if (stack_size(*stack_a) == 2)
 	{
 		sa(stack_a, "sa\n");
 		return ;
 	}
-	else if (size == 3)
+	if (stack_size(*stack_a) == 3)
 	{
 		if ((*stack_a)->number > (*stack_a)->next->number
 			&& (*stack_a)->number > (*stack_a)->next->next->number)
@@ -83,7 +39,7 @@ void	algo_sort_small_numbers(t_push_swap **stack_a)
 	}
 }
 
-void	algo_sort_fivenumbers(t_push_swap **stack_a, t_push_swap **stack_b)
+int	check_min(t_push_swap **stack_a)
 {
 	t_push_swap	*head;
 	int			min;
@@ -96,21 +52,32 @@ void	algo_sort_fivenumbers(t_push_swap **stack_a, t_push_swap **stack_b)
 			min = head->number;
 		head = head->next;
 	}
+	return (min);
+}
+
+void	algo_sort_fivenumbers(t_push_swap **stack_a, t_push_swap **stack_b)
+{
+	t_push_swap	*head;
+
 	head = (*stack_a);
-	if (head->next->number == min)
+	if (head->next->number == check_min(stack_a))
+	{
 		while (head != NULL)
 		{
-			if ((*stack_a)->number != min)
+			if ((*stack_a)->number != check_min(stack_a))
 				ra(stack_a, "ra\n");
 			head = head->next;
 		}
+	}
 	else
+	{
 		while (head != NULL)
 		{
-			if ((*stack_a)->number != min)
+			if ((*stack_a)->number != check_min(stack_a))
 				rra(stack_a, "rra\n");
 			head = head->next;
 		}
+	}
 	pb(stack_a, stack_b);
 	algo_sort_fournumbers(stack_a, stack_b);
 	pa(stack_a, stack_b);
@@ -119,31 +86,26 @@ void	algo_sort_fivenumbers(t_push_swap **stack_a, t_push_swap **stack_b)
 void	algo_sort_fournumbers(t_push_swap **stack_a, t_push_swap **stack_b)
 {
 	t_push_swap	*head;
-	int			min;
 
 	head = (*stack_a);
-	min = head->number;
-	while (head != NULL)
+	if (head->next->number == check_min(stack_a))
 	{
-		if (head->number < min)
-			min = head->number;
-		head = head->next;
-	}
-	head = (*stack_a);
-	if (head->next->number == min)
 		while (head != NULL)
 		{
-			if ((*stack_a)->number != min)
+			if ((*stack_a)->number != check_min(stack_a))
 				ra(stack_a, "ra\n");
 			head = head->next;
 		}
+	}
 	else
+	{
 		while (head != NULL)
 		{
-			if ((*stack_a)->number != min)
+			if ((*stack_a)->number != check_min(stack_a))
 				rra(stack_a, "rra\n");
 			head = head->next;
 		}
+	}
 	pb(stack_a, stack_b);
 	algo_sort_small_numbers(stack_a);
 	pa(stack_a, stack_b);

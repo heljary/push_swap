@@ -1,6 +1,13 @@
 {
     "files.associations": {
         "chrono": "c",
-        "functional": "c"
+        "functional": "c",
+        "array": "c",
+        "bitset": "c",
+        "string_view": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "span": "c",
+        "regex": "c"
     }
 }

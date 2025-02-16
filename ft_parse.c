@@ -6,76 +6,58 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:20:57 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/15 17:05:14 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/16 18:47:55 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print(t_push_swap *stack_a)
+void	pb_rb(t_push_swap **stack_a, t_push_swap **stack_b)
 {
-	while (stack_a != NULL)
-	{
-		ft_putnbr(stack_a->number);
-		ft_putchar('\n');
-		stack_a = stack_a->next;
-	}
+	pb(stack_a, stack_b);
+	rb(stack_b, "rb\n");
 }
 
-int	is_sorted(t_push_swap *head)
+t_push_swap	*ft_parsing(int ac, char **av, int i)
 {
-	int	num;
+	int			j;
+	int			num;
+	char		**args;
+	t_push_swap	*stack_a;
 
-	if (head == NULL)
+	stack_a = NULL;
+	while (i < ac)
 	{
-		return (1);
-	}
-	num = head->number;
-	head = head->next;
-	while (head != NULL)
-	{
-		if (num > head->number)
+		args = ft_split(av[i], ' ');
+		j = 0;
+		while (args[j])
 		{
-			return (0);
+			num = ft_atoi(args[j], args, stack_a);
+			if (!is_validnumber(args[j]))
+				function_exit(args, stack_a);
+			else if (is_dupliacte(stack_a, num))
+				function_exit(args, stack_a);
+			insert_last(&stack_a, num);
+			j++;
 		}
-		num = head->number;
-		head = head->next;
+		i++;
+		ft_free_split(args);
 	}
-	return (1);
+	return (stack_a);
 }
 
 int	main(int ac, char **av)
 {
-	t_push_swap	*stack_a;
 	t_push_swap	*stack_b;
-	int			i;
-	int			j;
-	int			num;
+	t_push_swap	*stack_a;
 	int			size;
-	char		**args;
+	int			i;
 
-	stack_a = NULL;
 	stack_b = NULL;
 	i = 1;
 	if (ac >= 2)
 	{
-		while (i < ac)
-		{
-			args = ft_split(av[i], ' ');
-			j = 0;
-			while (args[j])
-			{
-				num = ft_atoi(args[j]);
-				if (!is_validnumber(args[j]))
-					function_exit();
-				else if (is_dupliacte(stack_a, num))
-					function_exit();
-				insert_last(&stack_a, num);
-				j++;
-			}
-			i++;
-		}
-		ft_free_split(args);
+		stack_a = ft_parsing(ac, av, i);
 	}
 	if (is_sorted(stack_a))
 		exit(1);
