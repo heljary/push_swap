@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_function_a.c                                 :+:      :+:    :+:   */
+/*   utils_function_a_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 16:49:23 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/17 14:53:17 by heljary          ###   ########.fr       */
+/*   Created: 2025/02/17 11:54:54 by heljary           #+#    #+#             */
+/*   Updated: 2025/02/17 14:54:07 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	ft_putchar(char c)
 {
@@ -33,7 +33,7 @@ void	ft_putstr(char *str)
 {
 	int	len;
 
-	len = ft_strlen(str);
+	len = ft_strlenn(str);
 	if (!str)
 		return ;
 	write(1, str, len);
