@@ -6,18 +6,13 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:54:54 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/17 14:54:07 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:35:19 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_strlenn(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -33,31 +28,10 @@ void	ft_putstr(char *str)
 {
 	int	len;
 
-	len = ft_strlenn(str);
+	len = ft_strlen(str);
 	if (!str)
 		return ;
 	write(1, str, len);
-}
-
-void	ft_putnbr(int n)
-{
-	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return ;
-	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		ft_putchar(n + 48);
 }
 
 long	ft_atoi(const char *str, char **adress1, t_push_swap *adress2)
@@ -87,4 +61,18 @@ long	ft_atoi(const char *str, char **adress1, t_push_swap *adress2)
 	if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
 		function_exit(adress1, adress2);
 	return (result * sign);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	if (!s1 || !s2)
+	{
+		return (0);
+	}
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

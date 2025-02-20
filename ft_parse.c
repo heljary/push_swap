@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:20:57 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/16 18:47:55 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:40:07 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	i = 1;
 	if (ac >= 2)
-	{
 		stack_a = ft_parsing(ac, av, i);
-	}
 	if (is_sorted(stack_a))
+	{
+		free_stack(stack_a);
 		exit(1);
+	}
 	size = stack_size(stack_a);
 	if (size > 5)
 		algorithm_sort(&stack_a, &stack_b);

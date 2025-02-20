@@ -6,18 +6,13 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:49:23 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/17 14:53:17 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:42:21 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_strlenn(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -37,27 +32,6 @@ void	ft_putstr(char *str)
 	if (!str)
 		return ;
 	write(1, str, len);
-}
-
-void	ft_putnbr(int n)
-{
-	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return ;
-	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		ft_putchar(n + 48);
 }
 
 long	ft_atoi(const char *str, char **adress1, t_push_swap *adress2)
@@ -87,4 +61,30 @@ long	ft_atoi(const char *str, char **adress1, t_push_swap *adress2)
 	if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
 		function_exit(adress1, adress2);
 	return (result * sign);
+}
+
+char	*ft_substr(const char *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	size_t	i;
+	size_t	s_len;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		len = 0;
+	if (len > s_len - start)
+		len = s_len - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
 }

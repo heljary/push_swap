@@ -6,37 +6,11 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:46:44 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/15 16:54:18 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:42:14 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	char	*substr;
-	size_t	i;
-	size_t	s_len;
-
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		len = 0;
-	if (len > s_len - start)
-		len = s_len - start;
-	substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!substr)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		substr[i] = s[start + i];
-		i++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
 
 int	stack_size(t_push_swap *head)
 {

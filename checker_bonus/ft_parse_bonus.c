@@ -6,25 +6,61 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:53:33 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/17 18:35:18 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:35:02 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
 #include "get_next_line.h"
+#include "push_swap_bonus.h"
 #include <string.h>
 
-void checker_function()
+void	checker_function(t_push_swap **stack_a, char *line)
 {
-	
+	ft_putstr("Error: Invalid instruction\n");
+	free(line);
+	free_stack(*stack_a);
+	exit(1);
 }
 
-void ft_print(t_push_swap *head)
+void	norm(t_push_swap **stack_a, t_push_swap **stack_b, char *line)
 {
-	while(head)
+	if (ft_strcmp(line, "sa\n") == 0)
+		sa(stack_a);
+	else if (ft_strcmp(line, "sb\n") == 0)
+		sb(stack_b);
+	else if (ft_strcmp(line, "ss\n") == 0)
+		ss(stack_a, stack_b);
+	else if (ft_strcmp(line, "pa\n") == 0)
+		pa(stack_a, stack_b);
+	else if (ft_strcmp(line, "pb\n") == 0)
+		pb(stack_a, stack_b);
+	else if (ft_strcmp(line, "ra\n") == 0)
+		ra(stack_a);
+	else if (ft_strcmp(line, "rb\n") == 0)
+		rb(stack_b);
+	else if (ft_strcmp(line, "rr\n") == 0)
+		rr(stack_a, stack_b);
+	else if (ft_strcmp(line, "rra\n") == 0)
+		rra(stack_a);
+	else if (ft_strcmp(line, "rrb\n") == 0)
+		rrb(stack_b);
+	else if (ft_strcmp(line, "rrr\n") == 0)
+		rrr(stack_a, stack_b);
+	else
+		checker_function(stack_a, line);
+}
+
+void	ft_get_line_from_stdin(t_push_swap **stack_a, t_push_swap **stack_b)
+{
+	char	*line;
+
+	while (1)
 	{
-		printf("%d\n",head ->number);
-		head = head -> next;
+		line = get_next_line(0);
+		if ((!line))
+			break ;
+		norm(stack_a, stack_b, line);
+		free(line);
 	}
 }
 
@@ -60,60 +96,20 @@ int	main(int ac, char **av)
 {
 	t_push_swap	*stack_a;
 	t_push_swap	*stack_b;
-	stack_a = NULL;
 	int			i;
 
+	stack_b = NULL;
 	i = 1;
-	if (ac >= 2)
-	{
-		stack_a = ft_parsing(ac, av, i);
-	}
-
-	// ft_print(stack_a);
-	if(is_sorted(stack_a))
-	{
-		exit(1);
-	}
-	char *line ;
-	while ((line = get_next_line(0)) != NULL) 
-	{
-		line[strcspn(line, "\n")] = '\0';
-		if(strcmp(line,"sa") == 0)
-			sa(&stack_a);
-		else if(strcmp(line,"sb") == 0)
-			sb(&stack_b);
-		else if(strcmp(line,"ss") == 0)
-			ss(&stack_a, &stack_b);
-		else if(strcmp(line,"pa") == 0)
-			pa(&stack_a, &stack_b);
-		else if(strcmp(line,"pb") == 0)
-			pb(&stack_a, &stack_b);
-		else if(strcmp(line,"ra") == 0)
-			ra(&stack_a);
-		else if(strcmp(line,"rb") == 0)
-			rb(&stack_b);
-		else if(strcmp(line,"rr") == 0)
-			rr(&stack_a, &stack_b);
-		else if(strcmp(line,"rra") == 0)
-			rra(&stack_a);
-		else if(strcmp(line,"rrb") == 0)
-			rrb(&stack_b);
-		else if(strcmp(line,"rrr") == 0)
-			rrr(&stack_a, &stack_b);
-		else {
-            ft_putstr("Error: Invalid instruction\n");
-            free(line);
-            exit(1);
-        }
-		// ft_print(stack_a);
-        free(line);
-	}
-
-	if (is_sorted(stack_a)) {
-        ft_putstr("OK\n");
-    } else {
-        ft_putstr("KO\n");
-    }
-	
+	if (ac == 1)
+		exit(0);
+	stack_a = ft_parsing(ac, av, i);
+	ft_get_line_from_stdin(&stack_a, &stack_b);
+	if (is_sorted(stack_a) && !stack_b)
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
+	if (stack_b)
+		free_stack(stack_b);
+	free_stack(stack_a);
 	return (0);
 }

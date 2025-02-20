@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:46:44 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/17 14:53:53 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:31:50 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlenn(s);
+	s_len = ft_strlen(s);
 	if (start >= s_len)
 		len = 0;
 	if (len > s_len - start)
