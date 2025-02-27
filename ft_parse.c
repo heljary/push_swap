@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:20:57 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/20 18:40:07 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:05:45 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,25 @@ void	pb_rb(t_push_swap **stack_a, t_push_swap **stack_b)
 	rb(stack_b, "rb\n");
 }
 
-t_push_swap	*ft_parsing(int ac, char **av, int i)
+int	ft_isalnum(char *str)
 {
-	int			j;
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')
+			|| (str[i] >= '0' && str[i] <= '9'))
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+t_push_swap	*ft_parsing(int ac, char **av, int i, int j)
+{
 	int			num;
 	char		**args;
 	t_push_swap	*stack_a;
@@ -28,6 +44,8 @@ t_push_swap	*ft_parsing(int ac, char **av, int i)
 	stack_a = NULL;
 	while (i < ac)
 	{
+		if (!ft_isalnum(av[i]))
+			function_exit(NULL, stack_a);
 		args = ft_split(av[i], ' ');
 		j = 0;
 		while (args[j])
@@ -52,16 +70,16 @@ int	main(int ac, char **av)
 	t_push_swap	*stack_a;
 	int			size;
 	int			i;
+	int			j;
 
 	stack_b = NULL;
 	i = 1;
-	if (ac >= 2)
-		stack_a = ft_parsing(ac, av, i);
-	if (is_sorted(stack_a))
-	{
-		free_stack(stack_a);
+	j = 0;
+	if (ac == 1)
 		exit(1);
-	}
+	stack_a = ft_parsing(ac, av, i, j);
+	if (is_sorted(stack_a))
+		(free_stack(stack_a), exit(0));
 	size = stack_size(stack_a);
 	if (size > 5)
 		algorithm_sort(&stack_a, &stack_b);
@@ -72,5 +90,4 @@ int	main(int ac, char **av)
 	if (size == 2 || size == 3)
 		algo_sort_small_numbers(&stack_a);
 	free_stack(stack_a);
-	return (0);
 }

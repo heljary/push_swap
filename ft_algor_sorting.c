@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:21:22 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/16 18:10:57 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/27 11:24:11 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@ void	push_a_to_b(t_push_swap **stack_a, t_push_swap **stack_b, int *table,
 		int end)
 {
 	int	size;
+	int	index;
 
 	size = stack_size(*stack_a);
-	while (*stack_a != NULL)
+	while (stack_size(*stack_a) > 0)
 	{
-		if (get_index((*stack_a)->number, size, table) <= stack_size(*stack_b))
+		index = get_index((*stack_a)->number, size, table);
+		if (index <= stack_size(*stack_b))
 		{
 			pb_rb(stack_a, stack_b);
 			end++;
 		}
-		else if (get_index((*stack_a)->number, size, table) <= end)
+		else if (index <= end)
 		{
 			pb(stack_a, stack_b);
 			if (stack_size(*stack_b) > 1

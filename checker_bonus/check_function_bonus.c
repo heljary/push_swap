@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:53:05 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/20 18:33:03 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/23 16:50:08 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int	is_dupliacte(t_push_swap *root, int value)
 void	function_exit(char **adress, t_push_swap *stack)
 {
 	ft_putstr("Error\n");
-	free_stack(stack);
-	ft_free_split(adress);
+	if (stack)
+		free_stack(stack);
+	if (adress)
+		ft_free_split(adress);
 	exit(1);
 }
 
@@ -74,4 +76,21 @@ int	is_sorted(t_push_swap *head)
 		head = head->next;
 	}
 	return (1);
+}
+
+int	ft_isalnum(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')
+			|| (str[i] >= '0' && str[i] <= '9'))
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

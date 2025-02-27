@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:22:45 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/16 18:42:49 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:04:04 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int	is_dupliacte(t_push_swap *root, int value)
 void	function_exit(char **adress, t_push_swap *stack)
 {
 	ft_putstr("Error\n");
-	free_stack(stack);
-	ft_free_split(adress);
+	if (stack)
+		free_stack(stack);
+	if (adress)
+		ft_free_split(adress);
 	exit(1);
 }
 

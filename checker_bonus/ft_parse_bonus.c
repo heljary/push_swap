@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:53:33 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/20 18:35:02 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/23 16:48:56 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,8 @@ void	ft_get_line_from_stdin(t_push_swap **stack_a, t_push_swap **stack_b)
 	}
 }
 
-t_push_swap	*ft_parsing(int ac, char **av, int i)
+t_push_swap	*ft_parsing(int ac, char **av, int i, int j)
 {
-	int			j;
 	int			num;
 	char		**args;
 	t_push_swap	*stack_a;
@@ -74,6 +73,8 @@ t_push_swap	*ft_parsing(int ac, char **av, int i)
 	stack_a = NULL;
 	while (i < ac)
 	{
+		if (!ft_isalnum(av[i]))
+			function_exit(NULL, stack_a);
 		args = ft_split(av[i], ' ');
 		j = 0;
 		while (args[j])
@@ -97,12 +98,14 @@ int	main(int ac, char **av)
 	t_push_swap	*stack_a;
 	t_push_swap	*stack_b;
 	int			i;
+	int			j;
 
 	stack_b = NULL;
 	i = 1;
+	j = 0;
 	if (ac == 1)
 		exit(0);
-	stack_a = ft_parsing(ac, av, i);
+	stack_a = ft_parsing(ac, av, i, j);
 	ft_get_line_from_stdin(&stack_a, &stack_b);
 	if (is_sorted(stack_a) && !stack_b)
 		ft_putstr("OK\n");

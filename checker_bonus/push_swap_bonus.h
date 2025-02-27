@@ -6,7 +6,7 @@
 /*   By: heljary <heljary@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:54:47 by heljary           #+#    #+#             */
-/*   Updated: 2025/02/20 18:38:48 by heljary          ###   ########.fr       */
+/*   Updated: 2025/02/23 16:49:20 by heljary          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ void				insert_last(t_push_swap **head, int value);
 void				free_stack(t_push_swap *stack);
 int					is_sorted(t_push_swap *head);
 int					ft_strcmp(const char *s1, const char *s2);
-
+int					ft_isalnum(char *str);
 #endif
